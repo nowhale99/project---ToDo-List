@@ -1,7 +1,8 @@
-import { projectArr } from "./logic.js"
 import { addProject } from "./logic.js"
-import { renderProjects } from "./render.js"
+import { renderProjects } from "./renderProjects.js"
+
 import { addTodo } from "./logic.js"
+import { renderTodos } from "./renderTodos.js"
 
 const container = document.getElementById('container')
 
@@ -30,7 +31,7 @@ export function initialPage(){
     but1.classList.add('displayBtn')
     but1.addEventListener('click', ()=>{
         addTodo()
-        //renderTodos
+        renderTodos()
     })
     buttons.appendChild(but1)
 

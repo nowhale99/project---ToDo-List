@@ -1,5 +1,7 @@
 import { projectArr } from "./logic.js"
 import { deleteProject } from "./logic.js"
+import { changeProject } from "./logic.js"
+import { renderTodos } from "./renderTodos.js"
 
 export function renderProjects(){
 
@@ -14,6 +16,19 @@ export function renderProjects(){
         }else{
             project.classList.remove('current-project')
         }
+        project.addEventListener('click', ()=>{
+            changeProject(projectArr[i].id)
+            for(let j=0; j<projectArr.length; j++){
+                if(projectArr[j].state===true){
+                    project.classList.add('current-project')
+                }else{
+                    project.classList.remove('current-project')
+                }
+            }
+            renderProjects()
+            renderTodos()
+            console.log(projectArr)
+        })
         document.getElementById('projects').appendChild(project)
 
         const deleteBtn = document.createElement('button')
@@ -23,7 +38,7 @@ export function renderProjects(){
             deleteProject(projectArr[i].id)
             document.getElementById('projects').removeChild(project)
             renderProjects()
-            console.log(projectArr)})
+            })
             
         project.appendChild(deleteBtn)
     }
